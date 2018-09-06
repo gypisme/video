@@ -314,7 +314,8 @@
     </div>
 </div>
 <script>
-		var videoWrap = document.getElementById('testVideo')
+    if($(window).width() >=768){
+        var videoWrap = document.getElementById('testVideo')
 		var fullScreen = document.getElementById('getFullScreen')
 		var video = new Dvideo ({
 			ele: '#testVideo',
@@ -331,23 +332,9 @@
 					 video.setVideoInfo('LEDAO','http://dgtt.besttoptoday.com/bc/LRTEN2M.mp4 ',current)
 				}
 				video.showLoading(false)
-//                video.videoPlay()
-                alert(111);
-				// setTimeout(function () {
-				// 	video.videoEle.currentTime = current
-				// 	video.videoPlay()
-				// 	video.showLoading(false)
-				// }, 3000)
                 
 			}
 		})
-        if($(window).width()<960){
-            $('#myvideo').attr('src','http://dgtt.besttoptoday.com/bc/LRTEN800K.mp4')
-            alert(111);
-        }else if($(window).width()>960){
-            $('#myvideo').attr('src','http://dgtt.besttoptoday.com/bc/LRTEN2M.mp4')
-        }
-        
 		// 全屏
 		function setFullScreen () {
 			video.launchFullScreen(videoWrap)
@@ -402,6 +389,16 @@
 		function setVideoSize () {
 			video.updateVideoSize(720,480)
 		}
+    }else if($(window).width() <768){
+        str = '<video class="c_vdio" id="myvideo" controls autoplay src="http://dgtt.besttoptoday.com/bc/LRTEN800K.mp4"  poster="images/poster-vi.png" poster controlslist="nodownload" type="video/mp4"></video>';
+        $('#testVideo').html(str);
+        $('#testVideo .c_vdio').css({width:"100%"},{height:"auto"})
+    }
+    if($(window).width()<768){
+        $('#myvideo').attr('src','http://dgtt.besttoptoday.com/bc/LRTEN800K.mp4')
+    }else if($(window).width()>960){
+        $('#myvideo').attr('src','http://dgtt.besttoptoday.com/bc/LRTEN2M.mp4')
+    }
 </script>
 <script>
 //var swiper = new Swiper('.swiper-container', {
@@ -432,7 +429,6 @@ $(function(){
     )
     var width = $(window).width();
     $("#testVideo").width(width);
-    
 })
 $('.header ul li a').hover(function(){
   $(this).stop().animate({'margin-top':'-30px'},200)
