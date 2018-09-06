@@ -643,7 +643,6 @@
  			// 是否有currentT		
  			var loadTime = setInterval(function () {
  				loadProPlay(); 
-                alert(333);
  			}, 500)
 
  		},
