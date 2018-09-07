@@ -21,6 +21,7 @@
 
 			// 是否设置自动播放
 			autoplay: true,
+            muted: 'muted',
 
 			// 控制栏显示隐藏动画的 时间
 			ctrSpeedDuration: 3000,
@@ -94,7 +95,7 @@
 		this.isLoadMate = false
 
 		// 设置播放的状态
-		this.isPlaying = false
+        this.isPlaying = false
 
 		// 设置视频时长
 		this.durationT = 0
@@ -142,7 +143,7 @@
         }else{  
             this.opt.ele = options.ele
         }
-        this.isPlaying = this.opt.autoplay
+        
         this.initDom()
         this.showTopBottomCtrl(true)
 	}
@@ -252,7 +253,6 @@
 			// 	wscript.SendKeys("{F11}");
 			// }
 		},
-
 		// 关闭全屏
 		exitFullscreen: function () {
 			if(this.browserV.indexOf('IE10') >= 0 || this.browserV.indexOf('IE9') >= 0) {
@@ -600,7 +600,7 @@
 			this.currentT = this.videoEle.currentTime
 			
 			// this.videoEle.currentTime = this.currentT
-			// this.videoPlay()
+			 
 
 			this.opt.videoDefinition = {
 				activeIndex: index,
@@ -880,20 +880,19 @@
             this.videoEle.id = 'myvideo'
 			this.videoEle.src = this.opt.src
 			this.videoEle.loop = this.opt.loop
-			this.videoEle.autoplay = this.opt.autoplay
+            this.videoEle.autoplay = this.opt.autoplay
+            this.videoEle.muted= this.opt.muted
 			this.videoC.appendChild(this.videoEle)
 			var _this = this
-
 			// 视频事件
 			_this.videoEle.onloadstart = function () {
 				_this.showLoading(true, '视频加载中，请稍等')
 			},
 
 			_this.videoEle.oncanplay = function () {
-				_this.showLoading(false)
+				_this.showLoading(false);
 			},
-
-			_this.videoEle.onplaying = function () {
+			_this.videoEle.onplaying = function (){
 				_this.isPlaying = true
 				_this.videoPlayPauseI.className = 'Dvideo-ctrl-playPause icon-pause'
 				_this.videoPlayPauseI.title = '暂停 space'
